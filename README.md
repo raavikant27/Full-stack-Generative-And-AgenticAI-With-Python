@@ -390,6 +390,60 @@ pip install -r requirements.txt
 
 ---
 
+## 📂 Python Data Types - Complete Guide (02_datatypes)
+
+### 📖 All Chapters Available
+
+Comprehensive coverage of Python data types with practical examples:
+
+1. **[chapter_1.py](02_datatypes/chapter_1.py)** - Integers & Object Identity
+2. **[chapter_2.py](02_datatypes/chapter_2.py)** - Booleans & Truth Values
+3. **[chapter_3.py](02_datatypes/chapter_3.py)** - Floats & Precision
+4. **[chapter_4.py](02_datatypes/chapter_4.py)** - Operators (Arithmetic, Comparison, Logical)
+5. **[chapter_5.py](02_datatypes/chapter_5.py)** - Strings Basics & Methods
+6. **[chapter_6.py](02_datatypes/chapter_6.py)** - String Indexing, Slicing & Encoding
+7. **[chapter_7.py](02_datatypes/chapter_7.py)** - Tuples & Immutability
+8. **[chapter_8.py](02_datatypes/chapter_8.py)** - Lists (Mutable Collections)
+9. **[chapter_9.py](02_datatypes/chapter_9.py)** - Sets & Frozensets
+10. **[chapter_10.py](02_datatypes/chapter_10.py)** - Dictionaries (Key-Value Pairs)
+
+### 📝 [Complete Theory Notes](02_datatypes/theory_notes.md)
+
+Comprehensive documentation with:
+- ✅ Objects & Mutability concepts
+- ✅ All data types with detailed examples
+- ✅ Real-world use cases
+- ✅ Interview questions & one-liner answers
+- ✅ Best practices & performance tips
+- ✅ Quick reference tables
+
+### 📊 Data Types Quick Reference
+
+| Type | Mutable | Ordered | Duplicates | Syntax | Use Case |
+|------|---------|---------|------------|--------|----------|
+| int | ❌ | N/A | N/A | `42` | Whole numbers |
+| float | ❌ | N/A | N/A | `3.14` | Decimals |
+| bool | ❌ | N/A | N/A | `True` | Logic |
+| str | ❌ | ✅ | ✅ | `"text"` | Text |
+| tuple | ❌ | ✅ | ✅ | `(1, 2)` | Fixed data |
+| list | ✅ | ✅ | ✅ | `[1, 2]` | Dynamic arrays |
+| set | ✅ | ❌ | ❌ | `{1, 2}` | Unique items |
+| dict | ✅ | ✅ (3.7+) | Keys: ❌ | `{"k": "v"}` | Key-value data |
+
+### 🚀 Run Examples
+
+```powershell
+# Navigate to datatypes folder
+cd 02_datatypes
+
+# Run specific chapters
+python chapter_8.py    # Lists - Mutable collections
+python chapter_9.py    # Sets - Unique elements  
+python chapter_10.py   # Dictionaries - Key-value pairs
+```
+
+---
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/raavikant27/Full-stack-Generative-And-AgenticAI-With-Python/issues).

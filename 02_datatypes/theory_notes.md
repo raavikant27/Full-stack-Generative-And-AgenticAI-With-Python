@@ -1517,4 +1517,1482 @@ print(cardamom[0])        # 'Cardamom' (still works like tuple)
 
 ---
 
+## 🔄 Lists - Mutable Sequences (Complete Guide)
+
+### What is a List?
+- **Mutable sequence** that can be changed after creation
+- Known as **arrays** in other programming languages
+- Can store multiple items of different types
+- Defined using square brackets `[]`
+- Elements can be reordered, modified, added, or removed
+
+### List vs Tuple:
+| Feature | List | Tuple |
+|---------|------|-------|
+| Syntax | `[1, 2, 3]` | `(1, 2, 3)` |
+| Mutable | ✅ Yes | ❌ No |
+| Methods | Many (append, insert, etc.) | Few (count, index) |
+| Use Case | Dynamic data | Fixed data |
+
+---
+
+## 📝 List Creation & Basic Operations
+
+### Creating Lists
+```python
+# Empty list
+empty = []
+
+# List with items
+ingredients = ["water", "milk", "tea"]
+
+# Mixed types
+mixed = [1, "hello", 3.14, True]
+
+# From other sequences
+from_string = list("hello")  # ['h', 'e', 'l', 'l', 'o']
+```
+
+---
+
+## 🛠️ Essential List Methods
+
+### 1. **append(element)** - Add to End
+```python
+ingredients = ["water", "milk"]
+ingredients.append("sugar")
+# Result: ["water", "milk", "sugar"]
+```
+- Adds element at the **end** of list
+- Modifies list in-place
+- Returns `None`
+
+---
+
+### 2. **insert(index, element)** - Add at Position
+```python
+chai = ["water", "milk", "ginger"]
+chai.insert(2, "black tea")
+# Result: ["water", "milk", "black tea", "ginger"]
+```
+- Adds element at **specific index**
+- Shifts existing elements to the right
+- Index is 0-based
+
+#### Index Reference:
+```
+["water", "milk", "ginger"]
+   ↓        ↓        ↓
+  [0]      [1]      [2]
+```
+
+---
+
+### 3. **remove(element)** - Remove by Value
+```python
+items = ["water", "milk", "sugar", "water"]
+items.remove("water")
+# Result: ["milk", "sugar", "water"]
+```
+- Removes **first occurrence** only
+- Raises `ValueError` if element not found
+- Works regardless of position
+
+---
+
+### 4. **pop([index])** - Remove and Return
+```python
+items = ["water", "milk", "sugar"]
+last = items.pop()
+# last = "sugar"
+# items = ["water", "milk"]
+
+first = items.pop(0)
+# first = "water"
+# items = ["milk"]
+```
+- Removes element at index (default: last)
+- **Returns** the removed element
+- Useful when you need the value
+
+---
+
+### 5. **extend(iterable)** - Combine Lists
+```python
+base = ["water", "milk"]
+spices = ["ginger", "cardamom"]
+base.extend(spices)
+# Result: ["water", "milk", "ginger", "cardamom"]
+```
+- Adds all elements from another list
+- Modifies original list
+- Different from `append()` which adds the list as single element
+
+---
+
+### 6. **reverse()** - Reverse Order
+```python
+items = ["water", "milk", "tea"]
+items.reverse()
+# Result: ["tea", "milk", "water"]
+```
+- Reverses list **in-place**
+- Does NOT return anything (returns `None`)
+- Modifies original list
+
+---
+
+### 7. **sort()** - Sort Elements
+```python
+numbers = [3, 1, 4, 2]
+numbers.sort()
+# Result: [1, 2, 3, 4]
+
+words = ["tea", "water", "milk"]
+words.sort()
+# Result: ["milk", "tea", "water"]
+```
+- Sorts list **in-place** (alphabetically for strings)
+- Does NOT return anything
+- Optional: `reverse=True` for descending order
+
+---
+
+### 8. **clear()** - Remove All Elements
+```python
+items = ["water", "milk", "tea"]
+items.clear()
+# Result: []
+```
+
+---
+
+### 9. **count(element)** - Count Occurrences
+```python
+items = ["water", "milk", "water", "tea"]
+count = items.count("water")
+# Result: 2
+```
+
+---
+
+### 10. **index(element)** - Find Position
+```python
+items = ["water", "milk", "tea"]
+position = items.index("milk")
+# Result: 1
+```
+- Returns index of **first occurrence**
+- Raises `ValueError` if not found
+
+---
+
+## 🔢 Built-in Functions for Lists
+
+### max(list) - Maximum Value
+```python
+sugar_levels = [1, 2, 3, 4, 5]
+maximum = max(sugar_levels)
+# Result: 5
+```
+
+### min(list) - Minimum Value
+```python
+sugar_levels = [1, 2, 3, 4, 5]
+minimum = min(sugar_levels)
+# Result: 1
+```
+
+### len(list) - List Length
+```python
+items = ["water", "milk", "tea"]
+length = len(items)
+# Result: 3
+```
+
+### sum(list) - Sum of Numbers
+```python
+numbers = [1, 2, 3, 4, 5]
+total = sum(numbers)
+# Result: 15
+```
+
+---
+
+## ➕ Operator Overloading with Lists
+
+### What is Operator Overloading?
+- When operators (like `+` or `*`) perform more than one task
+- Originally designed for numbers
+- Also work with lists in Python
+
+---
+
+### Plus (+) Operator - Concatenation
+```python
+base = ["water", "milk"]
+extra = ["ginger"]
+combined = base + extra
+# Result: ["water", "milk", "ginger"]
+```
+- Creates **new list** (doesn't modify originals)
+- Combines two lists
+
+---
+
+### Multiply (*) Operator - Repetition
+```python
+brew = ["tea"] * 3
+# Result: ["tea", "tea", "tea"]
+
+multi = ["tea", "water"] * 2
+# Result: ["tea", "water", "tea", "water"]
+```
+- Repeats list elements
+- Maintains order in each repetition
+
+---
+
+## 📍 List Indexing & Slicing
+
+### 0-Based Indexing
+```python
+items = ["water", "milk", "tea", "sugar"]
+#          [0]     [1]     [2]     [3]
+#         [-4]    [-3]    [-2]    [-1]
+
+first = items[0]    # "water"
+last = items[-1]    # "sugar"
+```
+
+### Slicing
+```python
+items = ["water", "milk", "tea", "sugar"]
+
+# [start:end]
+items[1:3]    # ["milk", "tea"]
+
+# [start:]
+items[2:]     # ["tea", "sugar"]
+
+# [:end]
+items[:2]     # ["water", "milk"]
+
+# [::step]
+items[::2]    # ["water", "tea"]
+items[::-1]   # ["sugar", "tea", "milk", "water"]
+```
+
+---
+
+## 🔄 Mutable vs Immutable Behavior
+
+### Immutable (Numbers, Strings)
+```python
+x = 5
+print(id(x))  # 140234567890
+x = 10        # Creates NEW object
+print(id(x))  # 140234567999  ← Different ID
+```
+
+### Mutable (Lists)
+```python
+my_list = [1, 2, 3]
+print(id(my_list))  # 140234567890
+my_list.append(4)   # Modifies SAME object
+print(id(my_list))  # 140234567890  ← Same ID
+```
+
+---
+
+## 💾 Byte Arrays (Advanced)
+
+### What is bytearray?
+- **Mutable** sequence of bytes (0-255)
+- Used for binary data manipulation
+- Rarely used in everyday programming
+
+### Syntax
+```python
+data = bytearray(b"text")
+```
+
+### Important Rules:
+1. Methods return **new bytearray** (must reassign)
+2. Requires `b` prefix for byte literals
+3. Similar methods to strings (replace, capitalize, etc.)
+
+### Example
+```python
+raw = bytearray(b"cinnamon")
+raw = raw.replace(b"cinna", b"cardamom")
+# Must reassign to capture new bytearray
+print(raw)  # bytearray(b'cardamommon')
+```
+
+### When to Use:
+- Binary file operations
+- Network protocols
+- Low-level data manipulation
+- Character encoding conversions
+
+---
+
+## 🎯 Real-World Use Cases
+
+### E-commerce
+```python
+# Sort products by price
+prices = [29.99, 19.99, 39.99, 9.99]
+prices.sort()
+# Show lowest to highest
+
+min_price = min(prices)
+max_price = max(prices)
+```
+
+### Shopping Cart
+```python
+cart = ["laptop", "mouse"]
+cart.append("keyboard")
+cart.extend(["monitor", "speakers"])
+```
+
+### Inventory Management
+```python
+stock = ["item1", "item2", "item3"]
+sold = stock.pop(0)  # Remove and track sold item
+stock.insert(0, "new_item")  # Add new stock at beginning
+```
+
+---
+
+## ⚡ Best Practices & Tips
+
+### DO ✅
+- Use `append()` when adding single item to end
+- Use `extend()` when combining lists
+- Use `insert()` when position matters
+- Use `pop()` when you need the removed element
+- Use `list comprehensions` for creating filtered/transformed lists
+
+### DON'T ❌
+- Don't use `append()` to combine lists (use `extend()`)
+- Don't forget: `reverse()` and `sort()` return `None`
+- Don't modify list while iterating over it
+- Don't use `+` in loops (inefficient, use `extend()`)
+
+---
+
+## 🧪 Common Patterns
+
+### Check if element exists
+```python
+if "milk" in ingredients:
+    print("Has milk")
+```
+
+### Remove duplicates
+```python
+unique = list(set(my_list))
+```
+
+### Flatten nested list
+```python
+nested = [[1, 2], [3, 4]]
+flat = [item for sublist in nested for item in sublist]
+# Result: [1, 2, 3, 4]
+```
+
+### Copy a list
+```python
+# Shallow copy
+new_list = old_list.copy()
+# or
+new_list = old_list[:]
+# or
+new_list = list(old_list)
+```
+
+---
+
+## 📊 Quick Reference Table
+
+| Method | Returns | Modifies List | Purpose |
+|--------|---------|---------------|---------|
+| `append()` | None | ✅ | Add to end |
+| `insert()` | None | ✅ | Add at position |
+| `remove()` | None | ✅ | Remove by value |
+| `pop()` | Element | ✅ | Remove & return |
+| `extend()` | None | ✅ | Combine lists |
+| `reverse()` | None | ✅ | Reverse order |
+| `sort()` | None | ✅ | Sort in place |
+| `clear()` | None | ✅ | Remove all |
+| `count()` | Integer | ❌ | Count occurrences |
+| `index()` | Integer | ❌ | Find position |
+
+---
+
+## 🎓 Interview Questions & Answers
+
+### Q: What's the difference between append() and extend()?
+**A:** `append()` adds a single element (even if it's a list), while `extend()` adds all elements from an iterable.
+```python
+x = [1, 2]
+x.append([3, 4])   # [1, 2, [3, 4]]
+y = [1, 2]
+y.extend([3, 4])   # [1, 2, 3, 4]
+```
+
+### Q: Why do sort() and reverse() return None?
+**A:** They modify the list in-place for efficiency. Returning the list would suggest a new list is created, which isn't the case.
+
+### Q: How to copy a list?
+**A:** Use `list.copy()`, `list[:]`, or `list(original)`. Assignment (`new = old`) creates a reference, not a copy.
+
+### Q: Are lists faster than tuples?
+**A:** No, tuples are faster. Lists need extra overhead for mutability.
+
+---
+
+## 🎯 Interview One-Liner
+
+**"Lists are mutable, ordered collections using square brackets, supporting numerous methods like append/insert/remove, allowing dynamic modifications with the same object ID, ideal for changing data like shopping carts or user inputs, and enabling operator overloading with + for concatenation and * for repetition."**
+
+---
+
+## 🔷 Sets - Unique Mathematical Collections
+
+### What is a Set?
+- **Mutable, unordered** collection of **unique** elements
+- Based on mathematical set theory
+- **No duplicates allowed** - automatically removes duplicates
+- Defined using curly braces `{}` or `set()` function
+- Elements must be immutable (strings, numbers, tuples - NOT lists)
+- **No indexing** - can't access by position (unordered)
+
+### Set vs List vs Tuple:
+| Feature | Set | List | Tuple |
+|---------|-----|------|-------|
+| Syntax | `{1, 2, 3}` | `[1, 2, 3]` | `(1, 2, 3)` |
+| Mutable | ✅ Yes | ✅ Yes | ❌ No |
+| Ordered | ❌ No | ✅ Yes | ✅ Yes |
+| Duplicates | ❌ No | ✅ Yes | ✅ Yes |
+| Indexing | ❌ No | ✅ Yes | ✅ Yes |
+| Use Case | Unique items | Dynamic data | Fixed data |
+
+---
+
+## 📐 Mathematical Set Operations (Venn Diagrams)
+
+### Visual Representation:
+```
+     Set A          Set B
+    ┌─────┐        ┌─────┐
+    │  A  │        │  B  │
+    │   ┌─┼────────┼─┐   │
+    │   │ │ A ∩ B  │ │   │  ← Intersection
+    │   └─┼────────┼─┘   │
+    └─────┘        └─────┘
+    └──────────────────────┘
+          A ∪ B              ← Union
+```
+
+---
+
+## 🛠️ Set Creation
+
+### Creating Sets
+```python
+# Using curly braces
+spices = {"ginger", "cardamom", "cinnamon"}
+
+# Using set() function
+numbers = set([1, 2, 3, 4])
+
+# Empty set (must use set(), not {})
+empty = set()  # ✅ Correct
+empty = {}     # ❌ Wrong - this creates dictionary!
+
+# From string (each character becomes element)
+letters = set("hello")
+# Result: {'h', 'e', 'l', 'o'}  ← only one 'l'
+
+# Automatic duplicate removal
+duplicates = {1, 2, 2, 3, 3, 3}
+# Result: {1, 2, 3}  ← duplicates removed automatically
+```
+
+---
+
+## ➕ Set Operations (Mathematical)
+
+### 1. **UNION (|)** - Combine All Unique Elements
+```python
+A = {"cardamom", "ginger", "cinnamon"}
+B = {"cloves", "ginger", "black pepper"}
+all_spices = A | B
+# Result: {"cardamom", "ginger", "cinnamon", "cloves", "black pepper"}
+```
+- Gets **everything** from both sets
+- **No duplicates** - ginger appears only once
+- Symbol: `|` (pipe operator)
+- Method: `A.union(B)`
+
+**Real-world:** Combining user preferences from multiple sources
+
+---
+
+### 2. **INTERSECTION (&)** - Common Elements Only
+```python
+A = {"cardamom", "ginger", "cinnamon"}
+B = {"cloves", "ginger", "black pepper"}
+common = A & B
+# Result: {"ginger"}
+```
+- Gets elements present in **BOTH** sets
+- Only overlapping portion (Venn diagram center)
+- Symbol: `&` (ampersand)
+- Method: `A.intersection(B)`
+
+**Real-world:** Finding common interests between two users
+
+---
+
+### 3. **DIFFERENCE (-)** - Elements in A but NOT in B
+```python
+A = {"cardamom", "ginger", "cinnamon"}
+B = {"cloves", "ginger", "black pepper"}
+only_in_A = A - B
+# Result: {"cardamom", "cinnamon"}
+```
+- Gets elements **unique to first set**
+- Removes anything that exists in second set
+- Symbol: `-` (minus)
+- Method: `A.difference(B)`
+
+**Real-world:** Features in premium plan not in basic plan
+
+---
+
+### 4. **SYMMETRIC DIFFERENCE (^)** - Either Set, but NOT Both
+```python
+A = {"cardamom", "ginger", "cinnamon"}
+B = {"cloves", "ginger", "black pepper"}
+unique_to_each = A ^ B
+# Result: {"cardamom", "cinnamon", "cloves", "black pepper"}
+```
+- Gets elements in **either set, excluding common**
+- Opposite of intersection
+- Symbol: `^` (caret)
+- Method: `A.symmetric_difference(B)`
+
+**Real-world:** Items unique to each shopping cart
+
+---
+
+## 📝 Set Methods
+
+### Adding Elements
+
+#### add(element) - Add Single Element
+```python
+spices = {"ginger", "cardamom"}
+spices.add("cinnamon")
+# Result: {"ginger", "cardamom", "cinnamon"}
+```
+- Adds one element
+- No error if element already exists (silently ignored)
+
+#### update(iterable) - Add Multiple Elements
+```python
+spices = {"ginger"}
+spices.update(["cardamom", "cinnamon"])
+# Result: {"ginger", "cardamom", "cinnamon"}
+```
+- Adds multiple elements from iterable
+- Similar to `extend()` for lists
+
+---
+
+### Removing Elements
+
+#### remove(element) - Remove (Error if Not Found)
+```python
+spices = {"ginger", "cardamom", "cinnamon"}
+spices.remove("cardamom")
+# Result: {"ginger", "cinnamon"}
+
+spices.remove("cloves")  # ❌ KeyError!
+```
+- Raises `KeyError` if element doesn't exist
+
+#### discard(element) - Remove (No Error)
+```python
+spices = {"ginger", "cardamom"}
+spices.discard("cinnamon")  # ✅ No error, just does nothing
+# Result: {"ginger", "cardamom"}
+```
+- Safe removal - no error if element missing
+- **Preferred** when unsure if element exists
+
+#### pop() - Remove Random Element
+```python
+spices = {"ginger", "cardamom", "cinnamon"}
+removed = spices.pop()
+# Returns and removes random element (sets are unordered)
+```
+- Returns the removed element
+- **Warning:** Random element (no guaranteed order)
+
+#### clear() - Remove All Elements
+```python
+spices = {"ginger", "cardamom"}
+spices.clear()
+# Result: set()
+```
+
+---
+
+## 🔍 Set Relationships & Testing
+
+### Membership Testing (in / not in)
+```python
+spices = {"ginger", "cardamom", "cinnamon"}
+
+print("ginger" in spices)       # True
+print("cloves" in spices)       # False
+print("cloves" not in spices)   # True
+```
+
+### Subset - Is Every Element of A in B?
+```python
+A = {"ginger", "cardamom"}
+B = {"ginger", "cardamom", "cinnamon", "cloves"}
+
+print(A.issubset(B))    # True
+print(A <= B)           # True (alternative syntax)
+print(A < B)            # True (proper subset - A ≠ B)
+```
+
+### Superset - Does A Contain All Elements of B?
+```python
+A = {"ginger", "cardamom", "cinnamon", "cloves"}
+B = {"ginger", "cardamom"}
+
+print(A.issuperset(B))  # True
+print(A >= B)           # True (alternative syntax)
+print(A > B)            # True (proper superset - A ≠ B)
+```
+
+### Disjoint - No Common Elements?
+```python
+A = {"ginger", "cardamom"}
+B = {"cloves", "cinnamon"}
+
+print(A.isdisjoint(B))  # True (no common elements)
+
+C = {"ginger", "cloves"}
+print(A.isdisjoint(C))  # False (ginger is common)
+```
+
+---
+
+## ❄️ Frozenset - Immutable Sets
+
+### What is Frozenset?
+- **Immutable** version of set
+- Cannot add, remove, or modify elements
+- Can be used as dictionary keys (regular sets cannot)
+- Can be elements of other sets
+
+### Creating Frozenset
+```python
+# Using frozenset() function
+frozen = frozenset(["ginger", "cardamom", "cinnamon"])
+
+# From existing set
+regular_set = {"a", "b", "c"}
+frozen = frozenset(regular_set)
+```
+
+### Operations
+```python
+frozen1 = frozenset([1, 2, 3])
+frozen2 = frozenset([2, 3, 4])
+
+# Can perform set operations
+union = frozen1 | frozen2           # Works!
+intersection = frozen1 & frozen2     # Works!
+
+# Cannot modify
+# frozen1.add(5)      # ❌ AttributeError!
+# frozen1.remove(1)   # ❌ AttributeError!
+```
+
+### When to Use Frozenset:
+- Dictionary keys: `{frozenset([1, 2]): "value"}`
+- Set elements: `{frozenset([1, 2]), frozenset([3, 4])}`
+- Immutable configuration data
+- Hash table keys
+
+---
+
+## 🎯 Real-World Use Cases
+
+### Remove Duplicates from List
+```python
+numbers = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+unique = list(set(numbers))
+# Result: [1, 2, 3, 4]
+```
+
+### Find Common Tags
+```python
+post1_tags = {"python", "programming", "tutorial"}
+post2_tags = {"python", "coding", "tutorial"}
+common_tags = post1_tags & post2_tags
+# Result: {"python", "tutorial"}
+```
+
+### Check User Permissions
+```python
+user_permissions = {"read", "write", "execute"}
+required_permissions = {"read", "write"}
+
+has_access = required_permissions.issubset(user_permissions)
+# True - user has all required permissions
+```
+
+### Find Missing Skills
+```python
+required_skills = {"Python", "SQL", "Git"}
+candidate_skills = {"Python", "JavaScript", "Git"}
+missing = required_skills - candidate_skills
+# Result: {"SQL"}
+```
+
+### Email List Merge (No Duplicates)
+```python
+list1 = {"user1@email.com", "user2@email.com"}
+list2 = {"user2@email.com", "user3@email.com"}
+all_users = list1 | list2
+# Result: 3 unique emails
+```
+
+---
+
+## ⚡ Performance & Best Practices
+
+### DO ✅
+- Use sets for **membership testing** (very fast: O(1))
+- Use sets to **remove duplicates** from lists
+- Use sets for **mathematical operations** (union, intersection)
+- Use frozenset for **immutable** unique collections
+- Use sets when **order doesn't matter**
+
+### DON'T ❌
+- Don't use sets if you need **indexing** (use list)
+- Don't use sets if you need **order preservation** (use list)
+- Don't store **mutable objects** (lists, dicts) in sets
+- Don't assume any specific **iteration order**
+
+---
+
+## 🔄 Set vs Other Collections
+
+### When to Use Set:
+- Need **unique elements only**
+- Order doesn't matter
+- Fast membership testing
+- Mathematical set operations
+
+### When to Use List:
+- Need **duplicates**
+- Order matters
+- Need indexing
+- Need to modify by position
+
+### When to Use Tuple:
+- Immutable sequence
+- Order matters
+- Can have duplicates
+- Need to hash (use as dict key)
+
+---
+
+## 📊 Quick Reference Table
+
+| Operation | Syntax | Method | Result |
+|-----------|--------|--------|--------|
+| Union | `A \| B` | `A.union(B)` | All unique elements |
+| Intersection | `A & B` | `A.intersection(B)` | Common elements |
+| Difference | `A - B` | `A.difference(B)` | In A, not in B |
+| Symmetric Diff | `A ^ B` | `A.symmetric_difference(B)` | In either, not both |
+| Add element | - | `A.add(x)` | Adds x to A |
+| Remove element | - | `A.remove(x)` | Removes x (error if missing) |
+| Safe remove | - | `A.discard(x)` | Removes x (no error) |
+| Membership | `x in A` | - | True if x in A |
+| Subset | `A <= B` | `A.issubset(B)` | Is A subset of B? |
+| Superset | `A >= B` | `A.issuperset(B)` | Does A contain B? |
+| Disjoint | - | `A.isdisjoint(B)` | No common elements? |
+
+---
+
+## 🧪 Common Patterns
+
+### Check Multiple Conditions
+```python
+admin_roles = {"admin", "superuser", "moderator"}
+user_role = "admin"
+
+if user_role in admin_roles:
+    print("Access granted")
+```
+
+### Validate Required Fields
+```python
+required = {"name", "email", "password"}
+provided = set(user_data.keys())
+
+missing = required - provided
+if missing:
+    print(f"Missing fields: {missing}")
+```
+
+### Find Duplicates in List
+```python
+items = [1, 2, 3, 2, 4, 3, 5]
+seen = set()
+duplicates = set()
+
+for item in items:
+    if item in seen:
+        duplicates.add(item)
+    seen.add(item)
+# duplicates: {2, 3}
+```
+
+---
+
+## 🎓 Interview Questions & Answers
+
+### Q: What makes sets unique in Python?
+**A:** Sets automatically enforce uniqueness - duplicate elements are not allowed. They're unordered and mutable (except frozenset), making them ideal for membership testing and mathematical set operations.
+
+### Q: Why can't you use a list as a set element?
+**A:** Lists are mutable (unhashable), and sets require hashable elements. Use tuples or frozensets instead.
+
+### Q: What's the time complexity of membership testing in sets?
+**A:** O(1) average case - sets use hash tables internally, making lookups very fast compared to lists O(n).
+
+### Q: Difference between remove() and discard()?
+**A:** `remove()` raises KeyError if element doesn't exist; `discard()` does nothing (no error). Use `discard()` when unsure if element exists.
+
+### Q: When should you use frozenset over regular set?
+**A:** Use frozenset when you need an immutable set, as a dictionary key, or as an element of another set.
+
+### Q: How to create an empty set?
+**A:** Use `set()` - NOT `{}` which creates an empty dictionary!
+
+---
+
+## 🎯 Interview One-Liner
+
+**"Sets are mutable, unordered collections of unique elements using curly braces, supporting mathematical operations like union (|), intersection (&), and difference (-) based on set theory, providing O(1) membership testing, automatically removing duplicates, with frozenset as the immutable variant usable as dictionary keys or set elements."**
+
+---
+
+## 📖 Dictionaries - Named Indexing with Key-Value Pairs
+
+### What is a Dictionary?
+- **Mutable, unordered** collection of **key-value pairs**
+- Provides **named indexing** instead of numeric (0, 1, 2...)
+- Each key maps to a value (like a real dictionary: word → definition)
+- Keys must be **unique and immutable** (strings, numbers, tuples)
+- Values can be **anything** (any data type, even other dictionaries)
+- Defined using curly braces `{}` or `dict()` function
+- Python 3.7+: **Insertion order preserved**
+
+### Why Use Dictionaries?
+Instead of accessing by position:
+```python
+# List - numeric indexing
+person = ["Hitesh", "Choudhary"]
+first_name = person[0]  # Must remember position
+```
+
+Use meaningful names:
+```python
+# Dictionary - named indexing
+person = {"first_name": "Hitesh", "last_name": "Choudhary"}
+first_name = person["first_name"]  # Self-documenting!
+```
+
+### Dictionary vs List vs Set vs Tuple:
+| Feature | Dictionary | List | Set | Tuple |
+|---------|-----------|------|-----|-------|
+| Syntax | `{k: v}` | `[1, 2]` | `{1, 2}` | `(1, 2)` |
+| Mutable | ✅ Yes | ✅ Yes | ✅ Yes | ❌ No |
+| Ordered | ✅ Yes (3.7+) | ✅ Yes | ❌ No | ✅ Yes |
+| Duplicates | Keys: ❌ Values: ✅ | ✅ Yes | ❌ No | ✅ Yes |
+| Indexing | By key | By position | ❌ No | By position |
+| Use Case | Key-value data | Ordered items | Unique items | Fixed data |
+
+---
+
+## 🛠️ Dictionary Creation
+
+### Method 1: Curly Braces `{}`
+```python
+# Empty dictionary
+empty = {}
+
+# With initial data
+chai_order = {
+    "type": "masala chai",
+    "size": "large",
+    "sugar": 2
+}
+
+# Mixed value types
+person = {
+    "name": "Hitesh",
+    "age": 30,
+    "is_teacher": True,
+    "courses": ["Python", "JavaScript"]
+}
+```
+
+### Method 2: dict() Function
+```python
+# Using keyword arguments
+chai_order = dict(type="masala chai", size="large", sugar=2)
+
+# From list of tuples
+items = [("type", "ginger chai"), ("size", "medium")]
+chai_order = dict(items)
+
+# From two lists (keys and values)
+keys = ["type", "size", "sugar"]
+values = ["green tea", "small", 1]
+chai_order = dict(zip(keys, values))
+```
+
+### Method 3: Dictionary Comprehension
+```python
+# Create from range
+squared = {x: x**2 for x in range(1, 6)}
+# Result: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+
+# With condition
+even_squared = {x: x**2 for x in range(1, 11) if x % 2 == 0}
+# Result: {2: 4, 4: 16, 6: 36, 8: 64, 10: 100}
+```
+
+---
+
+## 📝 Accessing Dictionary Data
+
+### Direct Access with [ ]
+```python
+chai_order = {"type": "masala chai", "size": "large", "sugar": 2}
+
+# Get value by key
+chai_type = chai_order["type"]    # "masala chai"
+sugar_level = chai_order["sugar"]  # 2
+
+# ⚠️ KeyError if key doesn't exist
+customer_note = chai_order["note"]  # ❌ KeyError!
+```
+
+### Safe Access with get()
+```python
+chai_order = {"type": "masala chai", "size": "large"}
+
+# get(key, default) - no error if key missing
+sugar = chai_order.get("sugar", 0)  # Returns 0 (default)
+chai_type = chai_order.get("type")   # Returns "masala chai"
+
+# Avoids crashes
+note = chai_order.get("customer_note", "No note provided")
+# Returns "No note provided" instead of crashing
+```
+
+**When to use:**
+- `[]` - When you're **sure** the key exists
+- `get()` - When key **might not exist** (safer)
+
+---
+
+## ➕ Adding & Modifying Data
+
+### Add New Key-Value Pair
+```python
+chai_recipe = {}
+
+# Add items
+chai_recipe["base"] = "black tea"
+chai_recipe["liquid"] = "milk"
+chai_recipe["sweetener"] = "sugar"
+
+# Result: {"base": "black tea", "liquid": "milk", "sweetener": "sugar"}
+```
+
+### Modify Existing Value
+```python
+chai_order = {"type": "plain", "size": "medium"}
+
+# Change value
+chai_order["type"] = "masala chai"  # Overwrites "plain"
+chai_order["size"] = "large"
+
+# Result: {"type": "masala chai", "size": "large"}
+```
+
+### Using setdefault()
+```python
+chai_order = {"type": "masala", "size": "large"}
+
+# Set value ONLY if key doesn't exist
+chai_order.setdefault("sugar", 1)     # Adds sugar: 1
+chai_order.setdefault("type", "plain") # Does nothing (type exists)
+
+# Result: {"type": "masala", "size": "large", "sugar": 1}
+```
+
+---
+
+## 🗑️ Removing Data
+
+### del - Delete Key-Value Pair
+```python
+chai_recipe = {"base": "black tea", "liquid": "milk", "sugar": 2}
+
+# Delete specific key
+del chai_recipe["liquid"]
+# Result: {"base": "black tea", "sugar": 2}
+
+# ⚠️ KeyError if key doesn't exist
+del chai_recipe["spices"]  # ❌ KeyError!
+```
+
+### pop(key) - Remove and Return Value
+```python
+chai_order = {"type": "masala", "size": "large", "sugar": 2}
+
+# Remove and get value
+sugar_level = chai_order.pop("sugar")
+# sugar_level = 2
+# chai_order = {"type": "masala", "size": "large"}
+
+# With default (no error if key missing)
+note = chai_order.pop("customer_note", "No note")
+# Returns "No note", doesn't crash
+```
+
+### popitem() - Remove Last Inserted Pair
+```python
+chai_order = {"type": "masala", "size": "large", "sugar": 2}
+
+# Remove last item (LIFO - Last In First Out)
+last_item = chai_order.popitem()
+# last_item = ("sugar", 2)
+# chai_order = {"type": "masala", "size": "large"}
+
+# ⚠️ KeyError if dictionary is empty
+```
+
+### clear() - Remove All Items
+```python
+chai_order = {"type": "masala", "size": "large"}
+chai_order.clear()
+# Result: {}
+```
+
+---
+
+## 🔍 Dictionary Methods
+
+### keys() - Get All Keys
+```python
+chai_order = {"type": "ginger chai", "size": "medium", "sugar": 1}
+
+all_keys = chai_order.keys()
+# Result: dict_keys(['type', 'size', 'sugar'])
+
+# Convert to list
+key_list = list(chai_order.keys())
+# Result: ['type', 'size', 'sugar']
+```
+
+### values() - Get All Values
+```python
+chai_order = {"type": "ginger chai", "size": "medium", "sugar": 1}
+
+all_values = chai_order.values()
+# Result: dict_values(['ginger chai', 'medium', 1])
+
+# Convert to list
+value_list = list(chai_order.values())
+# Result: ['ginger chai', 'medium', 1]
+```
+
+### items() - Get Key-Value Pairs as Tuples
+```python
+chai_order = {"type": "ginger chai", "size": "medium", "sugar": 1}
+
+all_items = chai_order.items()
+# Result: dict_items([('type', 'ginger chai'), ('size', 'medium'), ('sugar', 1)])
+
+# Returns list of tuples
+item_list = list(chai_order.items())
+# Result: [('type', 'ginger chai'), ('size', 'medium'), ('sugar', 1)]
+```
+
+### update() - Merge Dictionaries
+```python
+chai_recipe = {"base": "black tea"}
+spices = {"cardamom": "crushed", "ginger": "sliced"}
+
+# Merge spices into chai_recipe
+chai_recipe.update(spices)
+# Result: {"base": "black tea", "cardamom": "crushed", "ginger": "sliced"}
+
+# Overwrites existing keys
+chai_recipe.update({"base": "green tea"})
+# Result: {"base": "green tea", ...}
+```
+
+### copy() - Create Shallow Copy
+```python
+original = {"type": "masala", "size": "large"}
+copy = original.copy()
+
+# Modify copy
+copy["size"] = "small"
+
+# Original unchanged
+print(original)  # {"type": "masala", "size": "large"}
+print(copy)      # {"type": "masala", "size": "small"}
+```
+
+### fromkeys() - Create Dictionary from Keys
+```python
+# All keys get same default value
+keys = ["Masala", "Ginger", "Green"]
+stock = dict.fromkeys(keys, 10)
+# Result: {"Masala": 10, "Ginger": 10, "Green": 10}
+
+# No default value = None
+defaults = dict.fromkeys(["a", "b", "c"])
+# Result: {"a": None, "b": None, "c": None}
+```
+
+---
+
+## 🔁 Looping Through Dictionaries
+
+### Loop Through Keys (Default)
+```python
+chai_order = {"type": "masala", "size": "large", "sugar": 2}
+
+# Method 1: Direct iteration
+for key in chai_order:
+    print(key)
+# Output: type, size, sugar
+
+# Method 2: Explicit keys()
+for key in chai_order.keys():
+    print(key)
+# Output: type, size, sugar
+```
+
+### Loop Through Values
+```python
+for value in chai_order.values():
+    print(value)
+# Output: masala, large, 2
+```
+
+### Loop Through Key-Value Pairs
+```python
+for key, value in chai_order.items():
+    print(f"{key}: {value}")
+# Output:
+# type: masala
+# size: large
+# sugar: 2
+```
+
+---
+
+## 🪆 Nested Dictionaries
+
+### Creating Nested Dictionaries
+```python
+tea_shop = {
+    "chai": {
+        "Masala": {"price": 30, "available": True},
+        "Ginger": {"price": 25, "available": True},
+        "Plain": {"price": 20, "available": False}
+    },
+    "location": "Mumbai",
+    "rating": 4.5
+}
+```
+
+### Accessing Nested Data
+```python
+# Access nested values
+masala_price = tea_shop["chai"]["Masala"]["price"]
+# Result: 30
+
+location = tea_shop["location"]
+# Result: "Mumbai"
+
+# Safe nested access
+green_price = tea_shop.get("chai", {}).get("Green", {}).get("price", 0)
+# Result: 0 (doesn't exist, returns default)
+```
+
+### Modifying Nested Data
+```python
+# Change nested value
+tea_shop["chai"]["Plain"]["available"] = True
+
+# Add new nested item
+tea_shop["chai"]["Green"] = {"price": 22, "available": True}
+```
+
+---
+
+## 🔄 Dictionary Operations (Python 3.9+)
+
+### Union with | (Merge)
+```python
+default_order = {"type": "plain", "size": "medium"}
+custom_order = {"size": "large", "sugar": 2}
+
+# Merge (custom_order overwrites defaults)
+final_order = default_order | custom_order
+# Result: {"type": "plain", "size": "large", "sugar": 2}
+```
+
+### Update with |= (In-Place Merge)
+```python
+order = {"type": "masala", "size": "medium"}
+order |= {"sugar": 2, "ice": False}
+# Result: {"type": "masala", "size": "medium", "sugar": 2, "ice": False}
+```
+
+---
+
+## ✅ Membership Testing
+
+### Check if Key Exists
+```python
+chai_order = {"type": "masala", "size": "large", "sugar": 2}
+
+# Check key presence
+print("sugar" in chai_order)        # True
+print("customer_note" in chai_order) # False
+
+# Check key absence
+print("note" not in chai_order)      # True
+```
+
+### Check if Value Exists (Slower)
+```python
+# Check in values
+print("masala" in chai_order.values())  # True
+print(50 in chai_order.values())         # False
+```
+
+---
+
+## 🎯 Real-World Use Cases
+
+### Configuration Settings
+```python
+config = {
+    "host": "localhost",
+    "port": 8000,
+    "debug": True,
+    "database": {
+        "host": "db.example.com",
+        "user": "admin"
+    }
+}
+```
+
+### User Profile
+```python
+user = {
+    "id": 12345,
+    "username": "hitesh",
+    "email": "hitesh@example.com",
+    "roles": ["admin", "teacher"],
+    "settings": {
+        "theme": "dark",
+        "notifications": True
+    }
+}
+```
+
+### Product Inventory
+```python
+inventory = {
+    "PROD001": {"name": "Laptop", "price": 50000, "stock": 15},
+    "PROD002": {"name": "Mouse", "price": 500, "stock": 100},
+    "PROD003": {"name": "Keyboard", "price": 1500, "stock": 50}
+}
+```
+
+### API Response
+```python
+response = {
+    "status": 200,
+    "message": "Success",
+    "data": {
+        "users": [
+            {"id": 1, "name": "Alice"},
+            {"id": 2, "name": "Bob"}
+        ]
+    }
+}
+```
+
+### Counting Occurrences
+```python
+text = "hello world hello python"
+word_count = {}
+
+for word in text.split():
+    word_count[word] = word_count.get(word, 0) + 1
+
+# Result: {"hello": 2, "world": 1, "python": 1}
+```
+
+---
+
+## ⚡ Performance & Best Practices
+
+### DO ✅
+- Use dictionaries for **key-value mappings**
+- Use `get()` when key **might not exist**
+- Use meaningful key names (strings)
+- Use dictionaries for **fast lookups** (O(1))
+- Use `in` to check key existence before access
+- Use dictionary comprehension for transformations
+
+### DON'T ❌
+- Don't use mutable objects as keys (lists, dicts, sets)
+- Don't rely on order in Python < 3.7
+- Don't use `[]` without checking key existence
+- Don't modify dictionary while iterating
+- Don't use dictionaries for ordered sequences (use list)
+
+---
+
+## 🧪 Common Patterns
+
+### Default Dictionary Pattern
+```python
+# Count occurrences
+counts = {}
+for item in items:
+    counts[item] = counts.get(item, 0) + 1
+```
+
+### Grouping Items
+```python
+students = [
+    {"name": "Alice", "grade": "A"},
+    {"name": "Bob", "grade": "B"},
+    {"name": "Charlie", "grade": "A"}
+]
+
+by_grade = {}
+for student in students:
+    grade = student["grade"]
+    by_grade.setdefault(grade, []).append(student["name"])
+# Result: {"A": ["Alice", "Charlie"], "B": ["Bob"]}
+```
+
+### Swapping Keys and Values
+```python
+original = {"a": 1, "b": 2, "c": 3}
+swapped = {v: k for k, v in original.items()}
+# Result: {1: "a", 2: "b", 3: "c"}
+```
+
+### Merging Multiple Dictionaries
+```python
+dict1 = {"a": 1, "b": 2}
+dict2 = {"b": 3, "c": 4}
+dict3 = {"c": 5, "d": 6}
+
+# Python 3.9+
+merged = dict1 | dict2 | dict3
+# Result: {"a": 1, "b": 3, "c": 5, "d": 6}
+
+# Any Python version
+merged = {**dict1, **dict2, **dict3}
+```
+
+---
+
+## 📊 Quick Reference Table
+
+| Operation | Syntax | Returns | Modifies Dict |
+|-----------|--------|---------|---------------|
+| Create | `{"k": "v"}` | Dictionary | N/A |
+| Access | `d["key"]` | Value | ❌ |
+| Safe access | `d.get("key", default)` | Value or default | ❌ |
+| Add/Update | `d["key"] = value` | None | ✅ |
+| Delete | `del d["key"]` | None | ✅ |
+| Pop | `d.pop("key")` | Value | ✅ |
+| Pop last | `d.popitem()` | (key, value) | ✅ |
+| Clear | `d.clear()` | None | ✅ |
+| Keys | `d.keys()` | dict_keys | ❌ |
+| Values | `d.values()` | dict_values | ❌ |
+| Items | `d.items()` | dict_items | ❌ |
+| Update | `d.update(other)` | None | ✅ |
+| Copy | `d.copy()` | New dict | ❌ |
+| Membership | `"key" in d` | Boolean | ❌ |
+
+---
+
+## 🎓 Interview Questions & Answers
+
+### Q: What's the difference between dict["key"] and dict.get("key")?
+**A:** `dict["key"]` raises KeyError if key doesn't exist. `dict.get("key", default)` returns default value (or None) without error - safer when key might not exist.
+
+### Q: Can lists be dictionary keys?
+**A:** No, keys must be immutable (hashable). Lists are mutable. Use tuples instead: `{(1, 2): "value"}`.
+
+### Q: What's the time complexity of dictionary lookup?
+**A:** O(1) average case - dictionaries use hash tables. This makes them much faster than lists for lookups.
+
+### Q: How to merge two dictionaries?
+**A:** Python 3.9+: `merged = dict1 | dict2`. Earlier: `merged = {**dict1, **dict2}` or `dict1.update(dict2)`.
+
+### Q: Are dictionaries ordered?
+**A:** Yes, since Python 3.7 insertion order is preserved. Before 3.7, no guaranteed order.
+
+### Q: What happens if duplicate keys in dictionary literal?
+**A:** Last value wins: `{"a": 1, "a": 2}` results in `{"a": 2}`.
+
+### Q: Difference between pop() and popitem()?
+**A:** `pop(key)` removes specific key. `popitem()` removes last inserted key-value pair (no argument needed).
+
+---
+
+## 🎯 Interview One-Liner
+
+**"Dictionaries are mutable, ordered (3.7+) collections of key-value pairs using curly braces or dict(), providing named indexing with O(1) lookup time, requiring immutable hashable keys, supporting methods like get() for safe access, update() for merging, items()/keys()/values() for iteration, ideal for configuration data, JSON-like structures, and fast lookups by meaningful names rather than numeric indices."**
+
+---
+
 *End of Theory Notes*
